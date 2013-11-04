@@ -31,9 +31,11 @@
         {{#if sticky}}
           <span class="post-sticky"><i class="icon-pin"></i><span>Sticky</span></span>
         {{/if}}
+        <span class="auth-picture">
+          <img src="{{authorAvatar}}" alt="">
+        </span>
         <h3 class="post-heading">
-          <a href="{{postLink}}" class="post-title" target="_blank">{{headline}}</a>
-          {{#if url}}<span class="post-domain">{{domain}}</span>{{/if}}
+          <span data-modal="modal-5" class="post-title md-trigger" data-url="{{postLink}}">{{headline}}</span>
             {{#each categories}}
               <a href="{{categoryLink}}" class="post-category category-{{slug}}">{{name}}</a>
             {{/each}}

@@ -6,7 +6,7 @@
     <ul class="nav site-nav desktop">
       {{#if canView}}
       <li><a class="top" href="/top">Top</a></li>
-      <li><a class="new" href="/new">New</a></li>
+      <li><a class="new" href="/new">New</a></li>     
       <li><a class="best" href="/best">Best</a></li>
       <li><a class="digest" href="/digest">Digest</a></li>
       {{/if}}
@@ -55,6 +55,9 @@
     {{/if}}
     
     <div class="auth-buttons">
+      {{#if currentUser}}
+      <img class='fb-profile' src="{{facebookProfileUrl}}" alt="">
+      {{/if}}
       {{loginButtons align="right"}}
     </div>
 

@@ -726,6 +726,13 @@ body.pageslide-open {
   .auth-buttons #login-buttons {
     position: relative;
     line-height: 26px; }
+    .auth-buttons .fb-profile {
+      margin: 0 8px;
+      border-radius: 50%;
+      vertical-align: middle;
+      width: 37px;
+      height: 37px;
+    }
     /* line 85, ../sass/modules/_header.scss */
     .auth-buttons #login-buttons .account-link {
       display: block;
@@ -945,6 +952,7 @@ body.pageslide-open {
     margin-bottom: 0px; }
     /* line 112, ../sass/modules/_posts.scss */
     .post-content .post-heading .post-title {
+      cursor: pointer;
       font-size: 20px;
       color: #4a4444;
       font-weight: normal;

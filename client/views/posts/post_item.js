@@ -53,6 +53,10 @@ Template.post_item.helpers({
     if(author=Meteor.users.findOne(this.userId))
       return getAvatarUrl(author);
   },
+  authorAvatar: function(){
+      //debugger;
+      return getAvatarUrl(Meteor.users.findOne(this.userId));
+  },
   inactiveClass: function(){
     return (isAdmin(Meteor.user()) && this.inactive) ? "inactive" : "";
   },
@@ -119,5 +123,41 @@ Template.post_item.events = {
       if(error)
         console.log(error);
     });
+
+    
+    //modal functionality 
+    var el = e.currentTarget,
+        modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+
+        overlay = document.querySelector( '.md-overlay' ),
+        url = el.getAttribute('data-url'),
+        img = modal.querySelector('img');
+
+      classie.add( modal, 'md-show' );
+      img.setAttribute('src', url);
+
+      overlay.removeEventListener( 'click', removeModalHandler );
+      overlay.addEventListener( 'click', removeModalHandler );
+
+      if( classie.has( el, 'md-setperspective' ) ) {
+          setTimeout( function() {
+            classie.add( document.documentElement, 'md-perspective' );
+          }, 25 );
+      }
+
+      function removeModal( hasPerspective ) {
+        classie.remove( modal, 'md-show' );
+
+        if( hasPerspective ) {
+          classie.remove( document.documentElement, 'md-perspective' );
+        }
+      }
+
+      function removeModalHandler() {
+        removeModal( classie.has( el, 'md-setperspective' ) ); 
+      }
+        
+     
+
   }
 };
