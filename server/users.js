@@ -3,10 +3,10 @@ Accounts.onCreateUser(function(options, user){
   user.profile.karma = 0;
   user.profile.notificationsFrequency = 1;
 
-
-  user.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
-  
-
+  if(user.services.facebook)
+    user.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+  else  
+    user.profile.picture = "/img/default_avatar.png";
   // users start pending and need to be invited
   user.isInvited = false
   

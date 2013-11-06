@@ -138,6 +138,7 @@ Template.post_item.events = {
 
       overlay.removeEventListener( 'click', removeModalHandler );
       overlay.addEventListener( 'click', removeModalHandler );
+      
 
       if( classie.has( el, 'md-setperspective' ) ) {
           setTimeout( function() {
