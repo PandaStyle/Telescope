@@ -80,7 +80,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 32, ../sass/partials/_mixins.scss */
 .grid-block, .post-content, .post-actions li a, .post-message, .comment-content, .comment-new, .error {
-  background: #f9f8f4;
+  background: rgba(261,274,250, 1);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -627,9 +627,9 @@ body.pageslide-open {
 
 /* line 5, ../sass/partials/_grid.scss */
 .grid {
-  width: 74%;
-  margin-left: 13%;
-  margin-right: 13%;
+  width: 62%;
+  margin-left: 19%;
+  margin-right: 19%;
   -webkit-transition: ease-out margin 300ms;
   -webkit-transition-delay: 0ms;
   -moz-transition: ease-out margin 300ms 0ms;
@@ -718,7 +718,7 @@ body.pageslide-open {
   position: relative;
   z-index: 20;
   float: right;
-  margin: 20px 10px 0 0; }
+  margin: 16px 10px 0 0; }
   /* line 79, ../sass/modules/_header.scss */
   .auth-buttons #login-buttons {
     position: relative;
@@ -767,6 +767,7 @@ body.pageslide-open {
         content: "Welcome, "; }
     /* line 121, ../sass/modules/_header.scss */
     .auth-buttons #login-buttons #login-buttons-logout {
+
       color: white;
       border: none;
       font-family: inherit;
@@ -860,7 +861,7 @@ body.pageslide-open {
   position: relative;
   padding: 0;
   min-height: 40px;
-  margin-right: 160px; }
+  }
   /* line 28, ../sass/modules/_posts.scss */
   .post-content .post-info {
     padding: 13px 15px;
@@ -985,6 +986,7 @@ body.pageslide-open {
         color: white; }
   /* line 144, ../sass/modules/_posts.scss */
   .post-content .post-meta {
+      margin-left: 55px;
     font-size: 13px;
     color: #b3c1c6;
     line-height: 1.5; }
@@ -1520,12 +1522,12 @@ input[type="submit"], button, .button, .auth-buttons #login-buttons #login-butto
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
-  border-radius: 0px;
+  border-radius: 4px;
   background: #f36c3d;
   color: white;
   text-align: center;
   display: block;
-  padding: 0px 10px;
+  padding: 0px 14px;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -1930,3 +1932,8 @@ table thead tr td {
     height: 40px; width: 40px;
     float: left;
   }
+
+
+#login-buttons .login-button, .accounts-dialog .login-button {
+
+}

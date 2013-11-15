@@ -11,7 +11,7 @@ Template.post_item.helpers({
     return this._rank + 1;
   },
   showRank: function(){
-    return Session.get('isPostsList');
+    return false;
   },
   domain: function(){
     var a = document.createElement('a');
