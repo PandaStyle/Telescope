@@ -895,6 +895,11 @@ body.pageslide-open {
       -o-border-radius: 3px 0 0 3px;
       border-radius: 3px 0 0 3px;
       border-right: 1px solid #e7eff2; }
+        .post-content .post-upvote .upvote-link:hover{
+
+            background-color: #8CBEB2;
+        }
+
       /* line 59, ../sass/modules/_posts.scss */
       .post-content .post-upvote .upvote-link i {
         font-size: 12px;
@@ -919,6 +924,7 @@ body.pageslide-open {
         box-shadow: none; }
         /* line 80, ../sass/modules/_posts.scss */
         .post-content .post-upvote .upvote-link.not-voted:hover i {
+
           color: white;
           text-shadow: none; }
       /* line 85, ../sass/modules/_posts.scss */
@@ -1527,7 +1533,7 @@ input[type="submit"], button, .button, .auth-buttons #login-buttons #login-butto
   color: white;
   text-align: center;
   display: block;
-  padding: 0px 14px;
+  padding: 2px 18px;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -1936,4 +1942,8 @@ table thead tr td {
 
 #login-buttons .login-button, .accounts-dialog .login-button {
 
+}
+
+.login-link-and-dropdown-list.false .login-link-text {
+    margin-top: 5px;
 }
