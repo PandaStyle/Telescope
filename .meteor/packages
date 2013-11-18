@@ -7,7 +7,7 @@ backbone
 accounts-base
 accounts-ui
 accounts-password
-router
+accounts-twitter
 spiderable
 email
 database-forms
@@ -16,4 +16,7 @@ crypto-md5
 momentjs
 standard-app-packages
 rss
+iron-router
+mailchimp
+nprogress
 accounts-facebook

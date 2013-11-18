@@ -1,35 +1,99 @@
 Accounts.onCreateUser(function(options, user){
-  user.profile = options.profile || {};
-  user.profile.karma = 0;
-  user.profile.notificationsFrequency = 1;
+  var userProperties = {
+    profile: options.profile || {},
+    karma: 0,
+    isInvited: false,
+    isAdmin: false,
+    postCount: 0,
+    commentCount: 0,
+    invitedCount: 0
+  }
+  user = _.extend(user, userProperties);
 
-  if(user.services.facebook)
-    user.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
-  else  
-    user.profile.picture = "/img/default_avatar.png";
-  // users start pending and need to be invited
-  user.isInvited = false
-  
+    if(user.services.facebook)
+        user.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+    else
+        user.profile.picture = "/img/default_avatar.png";  
+    
   if (options.email)
     user.profile.email = options.email;
     
-  if (user.profile.email)
-    user.email_hash = CryptoJS.MD5(user.profile.email.trim().toLowerCase()).toString();
+  if (getEmail(user))
+    user.email_hash = getEmailHash(user);
   
   if (!user.profile.name)
     user.profile.name = user.username;
   
+  // set notifications default preferences
+  user.profile.notifications = {
+    users: false,
+    posts: false,
+    comments: true,
+    replies: true
+  }
+
+  // create slug from username
+  user.slug = slugify(getUserName(user));
+
   // if this is the first user ever, make them an admin
-  if ( !Meteor.users.find().count() )
+  if (!Meteor.users.find().count() )
     user.isAdmin = true;
 
+  // give new users a few invites (default to 3)
+  user.inviteCount = getSetting('startInvitesCount', 3);
+
   trackEvent('new user', {username: user.username, email: user.profile.email});
+
+  // if user has already filled in their email, add them to MailChimp list
+  if(user.profile.email)
+    addToMailChimpList(user);
+
+  // send notifications to admins
+  var admins = Meteor.users.find({isAdmin: true});
+  admins.forEach(function(admin){
+    if(getUserSetting('notifications.users', false, admin)){
+      var notification = getNotificationContents({
+        event: 'newUser',
+        properties: {
+          username: getUserName(user),
+          profileUrl: getProfileUrl(user)
+        },
+        userId: admin._id
+      }, 'email');
+      sendNotification(notification, admin);
+    }
+  });
+
 
   return user;
 });
 
-// FIXME -- don't use this yet, until a) we are sure it's the right approach
-// b) we also update their profile at the same time.
+getEmailHash = function(user){
+  // todo: add some kind of salt in here
+  return CryptoJS.MD5(getEmail(user).trim().toLowerCase() + user.createdAt).toString();
+}
+
+addToMailChimpList = function(user){
+  // add a user to a MailChimp list.
+  // called when a new user is created, or when an existing user fills in their email
+  if((MAILCHIMP_API_KEY=getSetting('mailChimpAPIKey')) && (MAILCHIMP_LIST_ID=getSetting('mailChimpListId'))){
+
+    var email = getEmail(user);
+    if (! email)
+      throw 'User must have an email address';
+
+    console.log('adding "'+email+'" to MailChimp list…');
+    
+    var mailChimp = new MailChimpAPI(MAILCHIMP_API_KEY, { version : '1.3', secure : false });
+    
+    mailChimp.listSubscribe({
+      id: MAILCHIMP_LIST_ID,
+      email_address: email,
+      double_optin: false
+    });
+  }
+}
+
 Meteor.methods({
   changeEmail: function(newEmail) {
     Meteor.users.update(Meteor.userId(), {$set: {emails: [{address: newEmail}]}});
@@ -53,15 +117,11 @@ Meteor.methods({
     var newScore = baseScore / Math.pow(ageInHours + 2, 1.3);
     return Math.abs(object.score - newScore);
   },
-  generateEmailHash: function(){
-    var email_hash = CryptoJS.MD5(getEmail(Meteor.user()).trim().toLowerCase()).toString();
-    Meteor.users.update(Meteor.userId(), {$set : {email_hash : email_hash}});
+  setEmailHash: function(user){
+    var email_hash = CryptoJS.MD5(getEmail(user).trim().toLowerCase()).toString();
+    Meteor.users.update(user._id, {$set : {email_hash : email_hash}});
+  },
+  addCurrentUserToMailChimpList: function(){
+    addToMailChimpList(Meteor.user());
   }
 });
-
-// permissions for the profiler
-// Meteor.Profiler.allow = function(userId) {
-//   var user = Meteor.users.findOne(userId);
-//   return user && user.isAdmin;
-// };
-
