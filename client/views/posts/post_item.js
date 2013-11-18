@@ -131,10 +131,25 @@ Template.post_item.events = {
 
         overlay = document.querySelector( '.md-overlay' ),
         url = el.getAttribute('data-url'),
-        img = modal.querySelector('img');
+        img = $("<img class='gif-content' />");
+
+      //add random number to prevent image caching
+      var d = new Date();
+      url += ("?T=" + d.getTime());
 
       classie.add( modal, 'md-show' );
-      img.setAttribute('src', url);
+      $(modal.querySelector('.loader')).show();
+
+      img.on('load',function(){
+
+          $(modal.querySelector('.loader')).hide();
+          $(modal).find('.md-content').append(img);
+
+      });
+
+      img.attr('src', url);
+
+
 
       overlay.removeEventListener( 'click', removeModalHandler );
       overlay.addEventListener( 'click', removeModalHandler );
@@ -148,6 +163,8 @@ Template.post_item.events = {
 
       function removeModal( hasPerspective ) {
         classie.remove( modal, 'md-show' );
+
+        $(img).remove();
 
         if( hasPerspective ) {
           classie.remove( document.documentElement, 'md-perspective' );
