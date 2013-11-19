@@ -148,7 +148,7 @@ Template.post_item.events = {
     
     //modal functionality 
     var el = e.currentTarget,
-        modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+        modal = document.querySelector( '#' + el.getAttribute('data-modal') ),
 
         overlay = document.querySelector( '.md-overlay' ),
         url = el.getAttribute('data-url'),
