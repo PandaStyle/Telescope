@@ -17,7 +17,7 @@ Template.signin.events = {
   },
 
   'click .twitter-button': function(){
-    Meteor.loginWithTwitter(function(){
+    Meteor.loginWithFacebook(function(){
       Router.go('/');
     });
   }

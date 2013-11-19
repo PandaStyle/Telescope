@@ -645,9 +645,9 @@ body.pageslide-open {
 
 /* line 5, ../sass/partials/_grid.scss */
 .grid {
-  width: 62%;
-  margin-left: 19%;
-  margin-right: 19%;
+  width: 72%;
+  margin-left: 14%;
+  margin-right: 14%;
   -webkit-transition: ease-out margin 300ms;
   -webkit-transition-delay: 0ms;
   -moz-transition: ease-out margin 300ms 0ms;

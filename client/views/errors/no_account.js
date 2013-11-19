@@ -5,7 +5,7 @@ Template.no_account.helpers({
 });
 Template.no_account.events = {
   'click .twitter-button': function(){
-    Meteor.loginWithTwitter(function(){
+    Meteor.loginWithFacebook(function(){
 		Router.go('/');
     });
   }
