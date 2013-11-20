@@ -829,7 +829,7 @@ body.pageslide-open {
       padding-right: 0; }
     /* line 140, ../sass/modules/_header.scss */
     .nav > li > a {
-      color: white;
+      color: #5c5c5c;
       font-size: 16px;
       line-height: 26px;
       height: 26px;
@@ -2049,4 +2049,7 @@ table thead tr td {
 
 .login-link-and-dropdown-list.false .login-link-text {
     margin-top: 5px;
+}
+.nav > li > a.button {
+    background-color:   #5c5c5c;
 }
