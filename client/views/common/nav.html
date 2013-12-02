@@ -30,6 +30,11 @@
         </div>
       </li>
       {{/if}}
+      {{#if canView}}
+      <li class="user-nav desktop">
+            <a id="submit" class="submit button" href="/submit">Post</a>
+      </li>
+      {{/if}}
       {{#if isAdmin}}
       <li class="dropdown">
         <a class="admin" href="/">Admin</a>
@@ -55,12 +60,7 @@
     {{else}}
       <h1 class="logo"><a href="/">{{site_title}}</a></h1>
     {{/if}}
-    
-    {{#if canView}}
-    <ul class="nav user-nav desktop">
-      <li><a id="submit" class="submit button" href="/submit">Post</a></li>
-    </ul>
-    {{/if}}
+
     
     <div class="auth-buttons">
       {{#if currentUser}}
