@@ -71,16 +71,16 @@ Template.post_item.helpers({
       return getAvatarUrl(Meteor.users.findOne(this.userId));
   },
   inactiveClass: function(){
-    return (isAdmin(Meteor.user()) && this.inactive) ? "inactive" : "";
+    return (isAdmin(Meteor.user()) && this.inactive) ? i18n.t('inactive') : "";
   },
   categoryLink: function(){
     return getCategoryUrl(this.slug);
   },
   commentsDisplayText: function(){
-    return this.comments == 1 ? 'comment' : 'comments';
+    return this.comments == 1 ? i18n.t('comment') : i18n.t('comments');
   },
   pointsUnitDisplayText: function(){
-    return this.votes == 1 ? 'point' : 'points';
+    return this.votes == 1 ? i18n.t('point') : i18n.t('points');
   }
 });
 
@@ -117,13 +117,13 @@ Template.post_item.rendered = function(){
 
 };
 
-Template.post_item.events = {
+Template.post_item.events({
   'click .upvote-link': function(e, instance){
     var post = this;
     e.preventDefault();
     if(!Meteor.user()){
       Router.go('/signin');
-      throwError("Please log in first");
+      throwError(i18n.t("Please log in first"));
     }
     Meteor.call('upvotePost', post, function(error, result){
       trackEvent("post upvoted", {'_id': post._id});
@@ -199,4 +199,4 @@ Template.post_item.events = {
      
 
   }
-};
+});
