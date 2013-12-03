@@ -1,0 +1,88 @@
+/* Just click to select the code */
+
+@charset "UTF-8";
+
+@font-face {
+    font-family: "untitled-font-2";
+    src:url("/fonts/untitled-font-2.eot");
+    src:url("/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/untitled-font-2.ttf") format("truetype"),
+    url("/fonts/untitled-font-2.svg#untitled-font-2") format("svg"),
+    url("/fonts/untitled-font-2.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+    font-family: "untitled-font-2" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "untitled-font-2" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-happy-smiley:before {
+    content: "a";
+}
+.icon-like:before {
+    content: "b";
+}
+.icon-eye:before {
+    content: "c";
+}
+.icon-user2:before {
+    content: "d";
+}
+.icon-pen:before {
+    content: "e";
+}
+.icon-trash:before {
+    content: "f";
+}
+.icon-tag:before {
+    content: "g";
+}
+.icon-clip:before {
+    content: "h";
+}
+.icon-bubble:before {
+    content: "i";
+}
+.icon-cup:before {
+    content: "j";
+}
+.icon-cup-2:before {
+    content: "k";
+}
+.icon-coffee-streamline:before {
+    content: "l";
+}
+.icon-coffee:before {
+    content: "m";
+}
+.icon-clock:before {
+    content: "n";
+}
+.icon-share-outline:before {
+    content: "o";
+}
+
