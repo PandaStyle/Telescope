@@ -5,8 +5,6 @@
 
 backbone
 accounts-base
-accounts-ui
-accounts-password
 spiderable
 email
 database-forms
@@ -20,3 +18,4 @@ mailchimp
 nprogress
 telescope-i18n
 accounts-facebook
+accounts-ui-unstyled
