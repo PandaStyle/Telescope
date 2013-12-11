@@ -3,16 +3,29 @@
 
     <a id="mobile-menu" href="#menu" class="mobile mobile-button menu"><i class="icon-menu"></i><span>{{i18n "Menu"}}</span></a>
     <div class="grid">
+        <a class="logo grid" href="/"><img src="/img/gifster-logo.png" alt=""/></a>
+        <div class="auth-buttons">
+            {{loginButtons align="right"}}
+            {{#if currentUser}}
+            <div class="dropdown">
+            <img class='fb-profile ' src="{{facebookProfileUrl}}" alt="">
+                <div class="dropdown-menu" style="padding-top: 36px;">
+                    <ul>
+                        <li><a class="button" id="logout" href="">Sign out</a></li>
+                    </ul>
+
+                </div>
+             </div>
+            {{/if}}
+        </div>
         <ul class="nav site-nav desktop">
           {{#if canView}}
-
-          <li><a class="top" href="/top"><i class="icon-coffee"></i>{{i18n "Top"}}</a></li>
-          <li><a class="new" href="/new"><i class="icon-cup-2"></i>{{i18n "New"}}</a></li>
-
+          <li><a class="top navitem" href="/top"><i class="icon-coffee"></i>{{i18n "Top"}}</a></li>
+          <li><a class="new navitem" href="/new"><i class="icon-cup-2"></i>{{i18n "New"}}</a></li>
           {{/if}}
           {{#if hasCategories}}
           <li class="dropdown">
-            <a class="categories" href="/"><i class="icon-cup"></i>{{i18n "Categories"}}</a>
+            <a class="categories navitem" href="/"><i class="icon-cup"></i>{{i18n "Categories"}}</a>
             <div class="dropdown-menu">
               <ul role="menu" aria-labelledby="dLabel">
                 {{# each categories}}
@@ -37,26 +50,16 @@
             </div>
           </li>
           {{/if}}
+          {{#if currentUser}}
           <li><a class="button" href="/submit">{{i18n "Post"}}</a></li>
+          {{/if}}
         </ul>
 
-        {{#if logo_url}}
-          <h1 class="logo image" style="height:{{logo_height}}px; width:{{logo_width}}px; top:{{logo_top}}px; margin-left:{{logo_offset}}px;">
-            <a href="/">
-              <img src="{{logo_url}}" style="height:{{logo_height}}px;" alt="{{site_title}}"/>
-            </a>
-          </h1>
-        {{/if}}
 
 
-        <a href="#" class="soc-button soc-button-facebook" rel="nofollow"><i class="icon-facebook"></i>Like</a>
+        <!--<a href="#" class="soc-button soc-button-facebook" rel="nofollow"><i class="icon-facebook"></i>Like</a>-->
 
-        <div class="auth-buttons">
-          {{loginButtons align="right"}}
-            {{#if currentUser}}
-            <img class='fb-profile' src="{{facebookProfileUrl}}" alt="">
-            {{/if}}
-        </div>
+
     </div>
   </header>
 </template>

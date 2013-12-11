@@ -16,9 +16,13 @@ Template.nav.events = {
 Template.nav.rendered=function(){
   if(!Meteor.user()){
     $('.login-link-text').text("Sign Up/Sign In");
+    $('.sign-in-text-facebook').text("Log In").addClass('icon-facebook');
   }else{
+    $('#login-buttons').hide();
     $('#login-buttons-logout').before('<a href="/account" class="account-link button">My Account</a>');
   }
+
+
 };
 
 Template.nav.helpers({
